@@ -9,5 +9,6 @@ router.get("/login", authController.login_get);
 router.post("/login", authController.login_post);
 router.get("/logout", authController.logout_get);
 router.get("/addcoupons", authController.coupons_get);
+router.post("/addNftPoints", authController.addNftPoints);
 
 module.exports = router;

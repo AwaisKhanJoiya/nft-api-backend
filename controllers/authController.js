@@ -64,7 +64,7 @@ module.exports.signup_post = async (req, res) => {
     const user = await User.create({ email, password, firstName, lastName });
     const token = createToken(user._id);
     // res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ user: user._id, token });
+    res.status(201).json({ user: user, token });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
@@ -78,7 +78,7 @@ module.exports.login_post = async (req, res) => {
     const user = await User.login(email, password);
     const token = createToken(user._id);
     // res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(302).json({ user: user._id, token });
+    res.status(302).json({ user: user, token });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
@@ -137,6 +137,19 @@ module.exports.addWallet = async (req, res) => {
   try {
     const wallet = await Wallet.create({ walletAddress });
     res.status(201).json({ wallet: wallet._id });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+};
+module.exports.addNftPoints = async (req, res) => {
+  const id = req.body.id;
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: id },
+      { nftPoints: req.body.points }
+    );
+    res.status(201).json({ user });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

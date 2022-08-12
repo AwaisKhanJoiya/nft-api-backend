@@ -37,7 +37,7 @@ app.post("/validatecoupon", authController.checkCoupon);
 app.post("/addwallet", authController.addWallet);
 app.post("/addUserLinks", authController.addLink);
 app.post("/checkuser", requireAuth);
-app.get("/", (req, res) => res.render("home"));
+app.get("/test", (req, res) => res.send("Working"));
 app.use(authRoutes);
 
 // server port

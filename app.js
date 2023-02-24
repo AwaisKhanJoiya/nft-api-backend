@@ -22,7 +22,8 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // database connection
-const dbURI = "mongodb://localhost:27017/nft";
+const dbURI =
+  "mongodb+srv://shatokens:xFRfXTsUnvzynC40@cluster0.1wwlcgx.mongodb.net/nft?retryWrites=true&w=majority";
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
